@@ -16,3 +16,11 @@ Visión: Múltiples cámaras, procesamiento de imagen en tiempo real
 Audio: DSP dedicado para procesamiento de audio avanzado  
 Conectividad: Ethernet, WiFi, Bluetooth, múltiples USB  
 Pantallas: Soporte para múltiples displays simultáneos  
+
+### Transmision de ficheros
+Desde el ordenador ejecutar ```python -m http.server 8000```
+Desde la placa ejecutar:
+```
+cd PlacaKepar
+wget http://192.168.59.38/8000/hello.py
+```

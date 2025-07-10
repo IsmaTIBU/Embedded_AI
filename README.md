@@ -1,4 +1,4 @@
-#Placa i.MX 8M Plus Power EVK
+# Placa i.MX 8M Plus Power EVK
 ### ¿Qué es?  
 Es una placa de desarrollo profesional de NXP basada en el procesador i.MX 8M Plus, diseñada específicamente para aplicaciones de IA y machine learning en edge computing.
 Procesador principal:

@@ -24,3 +24,7 @@ Desde la placa ejecutar:
 cd PlacaKepar
 wget http://192.168.59.38/8000/[Archivo]
 ```
+
+### Ejecucion de ficheros
+Activar primero el entorno virtual: ```source Kepar/bin/activate```
+Ejecutar ficheros python como se quiera con ```python3 [archivo]```

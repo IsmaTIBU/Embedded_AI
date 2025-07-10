@@ -22,5 +22,5 @@ Desde el ordenador ejecutar ```python -m http.server 8000```
 Desde la placa ejecutar:
 ```
 cd PlacaKepar
-wget http://192.168.59.38/8000/hello.py
+wget http://192.168.59.38/8000/[Archivo]
 ```

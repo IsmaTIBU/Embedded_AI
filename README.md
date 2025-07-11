@@ -18,7 +18,11 @@ Conectividad: Ethernet, WiFi, Bluetooth, múltiples USB
 Pantallas: Soporte para múltiples displays simultáneos  
 
 ### Transmision de ficheros
-Desde el ordenador ejecutar ```python -m http.server 8000```  
+Desde el ordenador ejecutar: 
+```
+cd PlacaKepar
+python -m http.server 8000
+```  
 Desde la placa ejecutar:
 ```
 cd PlacaKepar

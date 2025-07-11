@@ -18,7 +18,7 @@ class CameraDetection:
         
         # Crear ventana
         self.window = Gtk.Window()
-        self.window.set_title("🎥 Detección de Caras")
+        self.window.set_title("Detección de Caras")
         self.window.set_default_size(800, 600)
         self.window.connect("destroy", self.on_destroy)
         
@@ -32,7 +32,7 @@ class CameraDetection:
         
         # Status
         self.status_label = Gtk.Label()
-        self.status_label.set_text("🚀 Iniciando...")
+        self.status_label.set_text("Iniciando...")
         vbox.pack_start(self.status_label, False, False, 5)
     
     def start_camera(self):
@@ -47,7 +47,7 @@ class CameraDetection:
                 self.cap.release()
         
         if not self.cap or not self.cap.isOpened():
-            self.status_label.set_text("❌ No se encontró cámara")
+            self.status_label.set_text("No se encontró cámara")
             return
         
         # Configurar cámara
@@ -96,7 +96,7 @@ class CameraDetection:
     def update_ui(self, pixbuf, face_count, frame_count):
         """Actualizar interfaz"""
         self.image_widget.set_from_pixbuf(pixbuf)
-        self.status_label.set_text(f"🎥 Frame {frame_count} | 👤 Caras: {face_count}")
+        self.status_label.set_text(f"Caras: {face_count}")
         return False
     
     def on_destroy(self, widget):

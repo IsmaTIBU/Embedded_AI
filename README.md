@@ -19,7 +19,7 @@ Pantallas: Soporte para múltiples displays simultáneos
 
 ### Transmision de ficheros
 
-IP de la placa: 192.168.59.125
+IP de la placa: 192.168.59.125  
 Mi IP: 192.168.59.38
 
 Desde el ordenador ejecutar: 

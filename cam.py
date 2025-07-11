@@ -91,7 +91,7 @@ class CameraDetection:
             GLib.idle_add(self.update_ui, pixbuf, len(faces), frame_count)
             
             frame_count += 1
-            time.sleep(0.033)  # ~30 FPS
+            time.sleep(0.01667)  # ~60 FPS
     
     def update_ui(self, pixbuf, face_count, frame_count):
         """Actualizar interfaz"""

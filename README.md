@@ -31,7 +31,7 @@ python -m http.server 8000
 Desde la placa ejecutar:
 ```
 cd PlacaKepar
-wget http://192.168.59.38/8000/[Archivo]
+wget http://192.168.59.38:8000/[Archivo]
 ```
 
 #### Para enviar desde la placa

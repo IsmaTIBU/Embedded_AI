@@ -6,6 +6,7 @@ import gi
 import numpy as np
 import tflite_runtime.interpreter as tflite
 from pathlib import Path
+import os
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('GdkPixbuf', '2.0')
@@ -222,10 +223,60 @@ class FaceDetectionNXP:
                 print(f"✅ Cámara encontrada: {device}")
                 break
             if self.cap:
+        # Detector de caras con ruta alternativa
+        self.face_cascade = self.load_cascade()
+        
+        # Crear ventana
+        self.window = Gtk.Window()
+        self.window.set_title("Detección de Caras")
+        self.window.set_default_size(800, 600)
+        self.window.connect("destroy", self.on_destroy)
+        
+        # Layout simple
+        vbox = Gtk.VBox(spacing=10)
+        self.window.add(vbox)
+        
+        # Widget de imagen
+        self.image_widget = Gtk.Image()
+        vbox.pack_start(self.image_widget, True, True, 0)
+        
+        # Status
+        self.status_label = Gtk.Label()
+        self.status_label.set_text("Iniciando...")
+        vbox.pack_start(self.status_label, False, False, 5)
+    
+    def load_cascade(self):
+        """Cargar cascade con múltiples rutas"""
+        cascade_paths = [
+            # Ruta estándar (si cv2.data existe)
+            getattr(cv2.data, 'haarcascades', '') + 'haarcascade_frontalface_default.xml' if hasattr(cv2, 'data') else '',
+            # Rutas alternativas comunes
+            '/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml',
+            '/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml',
+            '/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml'
+        ]
+        
+        for path in cascade_paths:
+            if path and os.path.exists(path):
+                cascade = cv2.CascadeClassifier(path)
+                if not cascade.empty():
+                    return cascade
+        
+        # Si no encuentra, crear uno vacío
+        return cv2.CascadeClassifier()
+    
+    def start_camera(self):
+        """Iniciar cámara automáticamente"""
+        # Buscar cámara disponible
+        for device in ['/dev/video3', '/dev/video0', '/dev/video1', '/dev/video2', 0, 1, 2, 3]:
+            self.cap = cv2.VideoCapture(device)
+            if self.cap.isOpened():
+                ret, _ = self.cap.read()
+                if ret:
+                    break
                 self.cap.release()
         
         if not self.cap or not self.cap.isOpened():
-            print("❌ No se encontró cámara")
             self.status_label.set_text("No se encontró cámara")
             return
         
@@ -238,6 +289,9 @@ class FaceDetectionNXP:
         
         method = "NPU" if self.interpreter else "Fallback"
         self.status_label.set_text(f"🚀 Detectando caras con {method}...")
+
+        status = "🎥 Detectando caras..." if not self.face_cascade.empty() else "🎥 Cámara activa (sin detección)"
+        self.status_label.set_text(status)
     
     def capture_loop(self):
         """Loop principal de captura y detección"""
@@ -257,6 +311,17 @@ class FaceDetectionNXP:
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 4)
                 cv2.putText(frame, 'FACE', (x+550, y+450), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+
+            faces = []
+            # Detectar caras solo si el cascade está disponible
+            if not self.face_cascade.empty():
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                faces = self.face_cascade.detectMultiScale(gray, 1.1, 4)
+                
+                # Dibujar rectángulos
+                for (x, y, w, h) in faces:
+                    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                    cv2.putText(frame, 'CARA', (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
             
             # Log cada 30 frames
             if frame_count % 30 == 0:
@@ -265,6 +330,8 @@ class FaceDetectionNXP:
             
             # Actualizar UI
             self._update_display(frame, len(faces), inference_time)
+
+            GLib.idle_add(self.update_ui, pixbuf, len(faces), frame_count)
             
             frame_count += 1
             time.sleep(0.033)  # ~30 FPS
@@ -290,6 +357,14 @@ class FaceDetectionNXP:
     def on_destroy(self, widget):
         """Limpiar recursos al cerrar"""
         print("🛑 Cerrando aplicación...")
+    def update_ui(self, pixbuf, face_count, frame_count):
+        """Actualizar interfaz"""
+        self.image_widget.set_from_pixbuf(pixbuf)
+        self.status_label.set_text(f"Caras: {face_count}")
+        return False
+    
+    def on_destroy(self, widget):
+        """Limpiar al cerrar"""
         self.running = False
         if self.cap:
             self.cap.release()
@@ -298,7 +373,7 @@ class FaceDetectionNXP:
     def run(self):
         """Ejecutar aplicación"""
         self.window.show_all()
-        GLib.idle_add(self.start_camera)
+        GLib.idle_add(self.start_camera)  # Iniciar automáticamente
         Gtk.main()
 
 if __name__ == "__main__":

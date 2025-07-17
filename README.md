@@ -18,6 +18,11 @@ Conectividad: Ethernet, WiFi, Bluetooth, múltiples USB
 Pantallas: Soporte para múltiples displays simultáneos  
 
 ### Transmision de ficheros
+
+IP de la placa: 192.168.59.125  
+Mi IP: 192.168.59.38
+
+#### Para enviar desde el ordenador
 Desde el ordenador ejecutar: 
 ```
 cd PlacaKepar
@@ -26,7 +31,19 @@ python -m http.server 8000
 Desde la placa ejecutar:
 ```
 cd PlacaKepar
-wget http://192.168.59.38/8000/[Archivo]
+wget http://192.168.59.38:8000/[Archivo]
+```
+
+#### Para enviar desde la placa
+Desde el ordenador ejecutar: 
+```
+cd PlacaKepar
+Invoke-WebRequest -Uri "http://192.168.59.125:8000/[Archivo]" -OutFile "[Archivo]"
+```  
+Desde la placa ejecutar:
+```
+cd PlacaKepar
+python3 -m http.server 8000
 ```
 
 ### Ejecucion de ficheros

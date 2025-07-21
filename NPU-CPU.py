@@ -17,7 +17,7 @@ def test_performance():
     print("🧠 Probando CPU...")
     try:
         interpreter_cpu = tflite.Interpreter(
-            model_path="best_float16.tflite",
+            model_path="model.tflite",
             num_threads=4
         )
         interpreter_cpu.allocate_tensors()

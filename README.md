@@ -59,6 +59,32 @@ cd PlacaKepar
 python3 -m http.server 8000
 ```
 ## Entrenamiento del modelo
+El modelo fue enteramente desarrollado con Tensorflow y Keras. El objetivo principal era desarrollar un modelo eficiente para la tarea que tampoco pesase demasiado, complicando lo minimo su arquitectura pero obteniendo resultados correctos. El modelo actual cuenta con poco mas de 900k parametros entrenados durante su fine-tunning.
+
+<table>
+<tr>
+<td><img src="images/Model1.png" width="200"/></td>
+<td><img src="images/Model2.png" width="200"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+  <em>Cambio de la arquitectura del modelo<br>para suavizar las curvas de entrenamiento y validación</em>
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td><img src="images/simple_training_history1.png" width="600"/></td>
+</tr>
+<tr>
+<td><img src="images/simple_training_history3.png" width="600"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><em>Resultados del entrenamiento del modelo inicial y del modelo final</em></td>
+</tr>
+</table>
+
 <table>
 <tr>
 <td><img src="images/KERAS_predictions.png" width="400"/></td>
@@ -77,11 +103,14 @@ python3 -m http.server 8000
 |Confianza maxima|100 %|99.9 %|
 |Confianza minima|77.3 %|50.2 %|
 
+Estos resultados podrian mejorar, especialmente para el modelo en formato .tflite, aumentando el dataset considerablemente (actualmente contamos con unicamente 590 imagenes de entrenamiento).
+
 ## Resultados con modelo cargado en ordenador 
 ### Camara utilizada: [ELP 5MP HD USB Camera](https://www.elpcctv.com/elp-5mp-hd-usb-camera-board-free-driver-usb-camera-module-with-ov5640-sensor-elpusb500w02ml21-p-51.html)
 
 ## Resultados con modelo integrado sobre la placa
 ### Camara utilizada: [4K MIPI CMOS Camera](https://www.nxp.com/design/design-center/development-boards-and-designs/4K-MIPI-CMOS-CAMERA-MODULE)
+
 
 
 

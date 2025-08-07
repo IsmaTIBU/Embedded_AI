@@ -1,8 +1,8 @@
 # Indice
-### - [¿Qué es la i.MX 8M Plus Power?](#qué-es-la-imx-8m-plus-power)
-### - [Entrenamiento del modelo](#entrenamiento-del-modelo)
-### - [Resultados con modelo cargado en ordenador](#resultados-con-modelo-cargado-en-ordenador)
-### - [Dos posibles soluciones](#dos-posibles-soluciones)
+### - [La placa](#qué-es-la-imx-8m-plus-power)
+### - [Entrenamiento](#entrenamiento-del-modelo)
+### - [Resultados](#resultados-con-modelo-cargado-en-ordenador)
+### - [Mejorias](#dos-posibles-soluciones)
 
 # Placa i.MX 8M Plus Power
 > A tener en cuenta: Este proyecto es un prototipo desarrollado para una aplicación industrial específica que involucra el control de calidad de un producto en especifico pero se focalizo desde una primera instancia en la misma deteccion de LEDs que en [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) para una vision mas clara de sus capacidades y limitacines al tratarse de un modelo de IA integrado en una placa. Sin embargo los resultados obtenidos basandonos en la deteccion de LEDs es perfectamente extrapolable a un control de calidad relacionado a cualquier otro elemento de la placa.
@@ -179,5 +179,6 @@ Ademas de eso los LEDs cuadrados no llegan a ser detectados en ningun momento, a
    **Contras:** Dataset especializado por lo cual no se podria utilizar para el resto de emplazamientos o camaras. O bien se verian bajadas de rendimiento o bien habria qeu implementar mas imagenes
    si se desea utilizar para otros casos.
    
+
 
 

@@ -35,6 +35,24 @@ Ejecutar archivos python con ```python3 [archivo]```
 IP de la placa: 194.178.59.125  
 Mi IP: 194.178.59.38
 
+Arquitectura de repositorio en ordenador:
+```
+Embedded_AI
+    |-------NPU-CPU.py
+    |-------camAI_CPU.py
+    |-------camAI_NPU.py
+    |-------README.md
+```
+
+Arquitectura actual del directorio en la placa:
+```
+PlacaKepar
+    |-------NPU-CPU.py
+    |-------camAI_CPU.py
+    |-------camAI_NPU.py
+    |-------modelo_convertido.tflite
+```
+
 #### Para enviar desde el ordenador (Windows)
 Desde el ordenador ejecutar: 
 ```
@@ -91,7 +109,7 @@ El modelo fue enteramente desarrollado con Tensorflow y Keras. El objetivo princ
 <td><img src="images/TFLITE_predictions.png" width="400"/></td>
 </tr>
 <tr>
-<td colspan="2" align="center"><em>Resultado de deteccion entre un modelo keras y tflite</em></td>
+<td colspan="2" align="center"><em>Resultado de deteccion entre un modelo .keras y .tflite</em></td>
 </tr>
 </table>
 
@@ -108,10 +126,50 @@ Estos resultados podrian mejorar, especialmente para el modelo en formato .tflit
 ## Resultados con modelo cargado en ordenador 
 ### Camara utilizada: [ELP 5MP HD USB Camera](https://www.elpcctv.com/elp-5mp-hd-usb-camera-board-free-driver-usb-camera-module-with-ov5640-sensor-elpusb500w02ml21-p-51.html)
 
+<table>
+<tr>
+<td><img src="images/Comp_testKeras.gif" width="400"/></td>
+<td><img src="images/Comp_testTflite.gif" width="400"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><em>Resultado de deteccion en tiempo real de un modelo .keras y .tflite </em></td>
+</tr>
+</table>
+
 ## Resultados con modelo integrado sobre la placa
 ### Camara utilizada: [4K MIPI CMOS Camera](https://www.nxp.com/design/design-center/development-boards-and-designs/4K-MIPI-CMOS-CAMERA-MODULE)
 
+<table>
+<tr>
+<td><img src="images/b_cpu.jpg" width="400"/></td>
+<td><img src="images/b_npu.jpg" width="400"/></td>
+</tr>
+<tr>
+<td><img src="images/cg_cpu.jpg" width="400"/></td>
+<td><img src="images/cg_npu.jpg" width="400"/></td>
+</tr>
+<tr>
+<td><img src="images/cug_cpu.jpg" width="400"/></td>
+<td><img src="images/cug_npu.jpg" width="400"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+  <em>Deteccion del fondo, LEDs circulares y cuadrados en la placa de NXP utilizando la CPU o la NPU</em>
+</td>
+</tr>
+</table>
 
+Como bien he dicho por el momento esto no es mas que un prototipo para familiarizarse lo antes posible con estos conceptos y a utilizar la placa, pero se ve claramente una diferencia de rendimiento
+entre las detecciones por CPU y por NPU, siendo esta ultima mucho mas lenta (~ x2.07) cuando no deberia ser asi. Habra entonces que depurar errores de optimizacion, incluso si por suerte para nuestro caso el modelo actual es tan ligero que se ejecuta suficientemente rapido por CPU.
+Ademas de eso los LEDs cuadrados no llegan a ser detectados en ningun momento, aun siendo el mismo modelo que como bien hemos visto antes tenia una precision muy alta. Esto muy probablemente por un dataset no bien "especializado" para esa camara. Lo mejor seria utilizar la propia camara que se utilizaria para la deteccion para tomar las fotos utilizadas para construir el dataset. El emplazamiento tambien es crucial puesto que se vera reflejado en los cambios de luz y los reflejos captados por camara.  
 
-
-
+**Dos posibles soluciones:**  
+1. Crear un dataset mucho mas extenso (~2000-3000 imagenes de entrenamiento) en el que se implementen fotos con mucha diferencia de intensidad luminica.  
+   **Pros:** Muy probablemente se trataria de un dataset que funcionaria con casi cualquier tipo de camara bajo casi cualquier tipo de condiciones.  
+   **Contras:** Construiri un dataset de esa envergadura tomaria bastante tiempo (1 semana aprox, sin contar posibles errores de etiquetado por ir con prisa).
+3. Crear un dataset especializado (~500-600 imagenes de entrenamiento) para ser utilizado unicamente con esa camara. Las fotos deberian ser tomadas con esa camara bajo las condiciones y
+   emplazamiento en el que se la dispondria.  
+   **Pros:** Construir ese dataset tomaria mucho menos tiempo (1 dia aproximadamente).  
+   **Contras:** Dataset especializado por lo cual no se podria utilizar para el resto de emplazamientos o camaras. O bien se verian bajadas de rendimiento o bien habria qeu implementar mas imagenes
+   si se desea utilizar para otros casos.
+   

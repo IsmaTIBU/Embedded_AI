@@ -6,7 +6,7 @@ Es una placa de desarrollo profesional de NXP basada en el procesador i.MX 8M Pl
 
 [Link to datasheet](https://www.nxp.com/products/IMX8MPLUS)
 
-![images/Placa](Placa.webp)
+![Placa](images/Placa.webp)
 
 #### Procesador principal:
 CPU: ARM Cortex-A53 quad-core hasta 1.8 GHz  
@@ -26,10 +26,10 @@ Pantallas: Soporte para múltiples displays simultáneos
 IP de la placa: 194.178.59.125  
 Mi IP: 194.178.59.38
 
-#### Para enviar desde el ordenador
+#### Para enviar desde el ordenador (Windows)
 Desde el ordenador ejecutar: 
 ```
-cd PlacaKepar
+cd Embedded_AI
 python -m http.server 8000
 ```  
 Desde la placa ejecutar:
@@ -38,10 +38,10 @@ cd PlacaKepar
 wget http://194.178.59.38:8000/[Archivo]
 ```
 
-#### Para enviar desde la placa
+#### Para enviar desde la placa (Linux
 Desde el ordenador ejecutar: 
 ```
-cd PlacaKepar
+cd Embedded_AI
 Invoke-WebRequest -Uri "http://194.178.59.125:8000/[Archivo]" -OutFile "[Archivo]"
 ```  
 Desde la placa ejecutar:
@@ -54,5 +54,6 @@ python3 -m http.server 8000
 
 ### Ejecucion de ficheros
 Ejecutar archivos python con ```python3 [archivo]```
+
 
 

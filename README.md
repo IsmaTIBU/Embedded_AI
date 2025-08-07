@@ -59,13 +59,30 @@ cd PlacaKepar
 python3 -m http.server 8000
 ```
 ## Entrenamiento del modelo
+<table>
+<tr>
+<td><img src="images/KERAS_predictions.png" width="400"/></td>
+<td><img src="images/TFLITE_predictions.png" width="400"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><em>Resultado de deteccion entre un modelo keras y tflite</em></td>
+</tr>
+</table>
 
+|          |modelo .keras|modelo .tflite|
+|----------|-----------|------------|
+|Peso|11.3 MB|1.05 MB|
+|Precision|100 %|98.59 %|
+|Confianza promedio|97.5 %|94.2 %|
+|Confianza maxima|100 %|99.9 %|
+|Confianza minima|77.3 %|50.2 %|
 
 ## Resultados con modelo cargado en ordenador 
 ### Camara utilizada: [ELP 5MP HD USB Camera](https://www.elpcctv.com/elp-5mp-hd-usb-camera-board-free-driver-usb-camera-module-with-ov5640-sensor-elpusb500w02ml21-p-51.html)
 
 ## Resultados con modelo integrado sobre la placa
 ### Camara utilizada: [4K MIPI CMOS Camera](https://www.nxp.com/design/design-center/development-boards-and-designs/4K-MIPI-CMOS-CAMERA-MODULE)
+
 
 
 

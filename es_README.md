@@ -3,9 +3,9 @@
 # Indice
 ### - [EL Hardware](#qué-es-la-imx-8m-plus-power)
 ### - [El Software](#funcionamiento-de-los-programas-actuales)
-### - [Entrenamiento](#entrenamiento-del-modelo)
-### - [Resultados](#resultados-con-modelo-cargado-en-ordenador)
-### - [Mejorias](#dos-posibles-soluciones)
+### - [Entrenamiento del modelo](#entrenamiento-del-modelo)
+### - [Resultados del modelo](#resultados-con-modelo-cargado-en-ordenador)
+### - [Possibles Mejoras](#dos-posibles-soluciones)
 
 ### ¿Qué es la i.MX 8M Plus Power?
 Es una placa de desarrollo profesional de NXP basada en el procesador i.MX 8M Plus, diseñada específicamente para aplicaciones de IA y machine learning en edge computing.  

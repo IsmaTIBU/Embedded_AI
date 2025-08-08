@@ -1,13 +1,13 @@
 > À noter : Ce projet est un prototype développé pour une application industrielle impliquant le contrôle qualité d'un produit spécifique, mais il s'est initialement focalisé sur la même détection de LED que dans [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) pour une vision plus claire de ses capacités et limitations lors du traitement d'un modèle d'IA intégré dans une carte. Cependant, le modèle obtenu basé sur la détection de LED est parfaitement extrapolable au contrôle qualité lié à tout autre élément de la carte.
 
 # Index
-### - [Le matériel](#quest-ce-que-limx-8m-plus-power)
-### - [Le logiciel](#fonctionnement-des-programmes-actuels)
-### - [Entraînement](#entraînement-du-modèle)
-### - [Résultats](#résultats-avec-modèle-chargé-sur-ordinateur)
-### - [Améliorations](#deux-solutions-possibles)
+### - [Le Hardware](#quest-ce-que-la-8mplus-bb)
+### - [Le Software](#fonctionnement-des-programmes-actuels)
+### - [Entraînement du model](#entraînement-du-modèle)
+### - [Résultats du model](#résultats-avec-modèle-chargé-sur-ordinateur)
+### - [Possibles Améliorations](#deux-solutions-possibles)
 
-### Qu'est-ce que l'i.MX 8M Plus Power ?
+### Qu'est-ce que la 8MPLUS-BB ?
 C'est une carte de développement professionnelle de NXP basée sur le processeur i.MX 8M Plus, conçue spécifiquement pour les applications d'IA et d'apprentissage automatique en edge computing.
 
 [Link to datasheet](https://www.nxp.com/products/IMX8MPLUS)
@@ -86,7 +86,7 @@ python3 -m http.server 8000
 ```
 
 ## Entraînement du modèle
-Le modèle a été entièrement développé avec Tensorflow et Keras. L'objectif principal était de développer un modèle efficace pour la tâche qui ne pèse pas trop, en compliquant le moins possible son architecture mais en obtenant des résultats corrects. Le modèle actuel compte un peu plus de 900k paramètres entraînés lors de son fine-tuning.
+Le modèle a été entièrement développé avec Tensorflow et Keras. L'objectif principal était de développer un modèle efficace pour la tâche qui ne pèse pas trop, en compliquant le moins possible son architecture mais en obtenant des résultats corrects. Le modèle actuel compte avec un peu plus de 900k paramètres entraînés lors de son fine-tuning.
 
 <table>
 <tr>
@@ -170,13 +170,16 @@ Ces résultats pourraient s'améliorer, surtout pour le modèle au format .tflit
 </tr>
 </table>
 
-Comme je l'ai dit, pour le moment ce n'est rien de plus qu'un prototype pour se familiariser le plus rapidement possible avec ces concepts et utiliser la carte, mais on voit clairement une différence de performance entre les détections par CPU et par NPU, cette dernière étant beaucoup plus lente (~ x2.07) alors qu'elle ne devrait pas l'être. Il faudra donc déboguer les erreurs d'optimisation, même si heureusement pour notre cas le modèle actuel est si léger qu'il s'exécute suffisamment rapidement par CPU.
+Comme je l'ai déjà dit, pour le moment ce n'est rien de plus qu'un prototype pour se familiariser le plus rapidement possible avec ces concepts et utiliser la carte, mais on voit clairement une différence de performance entre les détections par CPU et par NPU, cette dernière étant beaucoup plus lente (~ x2.07) alors qu'elle ne devrait pas l'être. Il faudra donc débugger les erreurs d'optimisation, même si heureusement pour notre cas le modèle actuel est si léger qu'il s'exécute suffisamment rapidement par CPU.
 En plus de cela, les LED carrées n'arrivent jamais à être détectées, même s'il s'agit du même modèle qui, comme nous l'avons vu auparavant, avait une précision très élevée. Ceci très probablement à cause d'un dataset pas bien "spécialisé" pour cette caméra. Le mieux serait d'utiliser la propre caméra qui serait utilisée pour la détection pour prendre les photos utilisées pour construire le dataset. L'emplacement est aussi crucial puisqu'il se reflétera dans les changements de lumière et les reflets captés par la caméra.
 
 ### Deux solutions possibles :
 1. Créer un dataset beaucoup plus étendu (~2000-3000 images d'entraînement) dans lequel on implémenterait des photos avec beaucoup de différence d'intensité lumineuse.  
    **- Avantages :** Il s'agirait très probablement d'un dataset qui fonctionnerait avec presque n'importe quel type de caméra sous presque n'importe quel type de conditions.  
    **- Inconvénients :** Construire un dataset de cette envergure prendrait assez de temps (1 semaine environ, sans compter les possibles erreurs d'étiquetage pour aller vite).
-2. Créer un dataset spécialisé (~500-600 images d'entraînement) pour être utilisé uniquement avec cette caméra. Les photos devraient être prises avec cette caméra sous les conditions et l'emplacement où on la disposerait.  
-   **- Avantages :** Construire ce dataset prendrait beaucoup moins de temps (1 jour approximativement). De plus, s'agissant d'un dataset "spécialisé", la précision des prédictions serait toujours très élevée.  
-   **- Inconvénients :** Dataset "spécialisé" donc on ne pourrait pas l'utiliser pour le reste des emplacements ou caméras. Soit on verrait des baisses de performance soit il faudrait implémenter plus d'images au dataset si on désire l'utiliser pour d'autres cas.
+2. Créer un dataset spécialisé (~500-600 images d'entraînement) pour être utilisé uniquement avec cette caméra. Les photos devraient être prises avec cette caméra sous les conditions et
+   l'emplacement où on la disposerait.  
+   **- Avantages :** Construire ce dataset prendrait beaucoup moins de temps (1 jour approximativement). De plus, s'agissant d'un dataset "spécialisé", la précision des prédictions serait toujours
+   très élevée.  
+   **- Inconvénients :** Dataset "spécialisé" donc on ne pourrait pas l'utiliser pour le reste des emplacements ou caméras. Soit on verrait des baisses de performance soit il faudrait implémenter
+   plus d'images au dataset si on désire l'utiliser pour d'autres cas.

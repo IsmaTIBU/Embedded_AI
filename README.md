@@ -1,47 +1,50 @@
-> A tener en cuenta: Este proyecto es un prototipo desarrollado para una aplicación industrial que involucra el control de calidad de un producto en especifico pero se focalizó desde una primera instancia en la misma detección de LEDs que en [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) para una visión mas clara de sus capacidades y limitaciones al tratarse de un modelo de IA integrado en una placa. Sin embargo el modelo obtenido basandonos en la deteccion de LEDs es perfectamente extrapolable a un control de calidad relacionado a cualquier otro elemento de la placa.
+[Click aqui para ver el documento en Español](es_README.md)
+[Clickez ici pour lire le document traduit au français](fr_README.md)
 
-# Indice
-### - [EL Hardware](#qué-es-la-imx-8m-plus-power)
-### - [El Software](#funcionamiento-de-los-programas-actuales)
-### - [Entrenamiento](#entrenamiento-del-modelo)
-### - [Resultados](#resultados-con-modelo-cargado-en-ordenador)
-### - [Mejorias](#dos-posibles-soluciones)
+> Note: This project is a prototype developed for an industrial application involving quality control of a specific product, but it was initially focused on the same LED detection as in [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) for a clearer view of its capabilities and limitations when dealing with an AI model integrated into a board. However, the model obtained based on LED detection is perfectly extrapolable to quality control related to any other board element.
 
-### ¿Qué es la i.MX 8M Plus Power?
-Es una placa de desarrollo profesional de NXP basada en el procesador i.MX 8M Plus, diseñada específicamente para aplicaciones de IA y machine learning en edge computing.  
+# Index
+### - [The Hardware](#what-is-the-imx-8m-plus-power)
+### - [The Software](#current-program-functionality)
+### - [Training](#model-training)
+### - [Results](#results-with-model-loaded-on-computer)
+### - [Improvements](#two-possible-solutions)
+
+### What is the i.MX 8M Plus Power?
+It is a professional development board from NXP based on the i.MX 8M Plus processor, specifically designed for AI and machine learning applications in edge computing.
 
 [Link to datasheet](https://www.nxp.com/products/IMX8MPLUS)
 
 ![Placa](images/Placa.webp)
 
-#### Procesador principal:
-CPU: ARM Cortex-A53 quad-core hasta 1.8 GHz  
-GPU: Vivante GC7000UL (gráficos 3D y aceleración)  
-NPU: Neural Processing Unit de 2.3 TOPS para IA  
-VPU: Video Processing Unit para codificación/decodificación H.264/H.265  
+#### Main processor:
+CPU: ARM Cortex-A53 quad-core up to 1.8 GHz  
+GPU: Vivante GC7000UL (3D graphics and acceleration)  
+NPU: Neural Processing Unit of 2.3 TOPS for AI  
+VPU: Video Processing Unit for H.264/H.265 encoding/decoding  
 
-### Capacidades clave:
-IA/ML: NPU dedicado que acelera modelos en formato .tflite (TensorFlow Lite)  
-Visión: Múltiples cámaras, procesamiento de imagen en tiempo real  
-Audio: DSP dedicado para procesamiento de audio avanzado  
-Conectividad: Ethernet, WiFi, Bluetooth, múltiples USB  
-Pantallas: Soporte para múltiples displays simultáneos  
+### Key capabilities:
+AI/ML: Dedicated NPU that accelerates models in .tflite format (TensorFlow Lite)  
+Vision: Multiple cameras, real-time image processing  
+Audio: Dedicated DSP for advanced audio processing  
+Connectivity: Ethernet, WiFi, Bluetooth, multiple USB  
+Displays: Support for multiple simultaneous displays  
 
-## Funcionamiento de los programas actuales 
-### Primero de todo cargar [modelo_convertido.tflite](https://github.com/IsmaTIBU/Embedded_AI/releases/tag/Tflite_model) en el mismo directorio que los programas.
-NPU-CPU.py: Analiza el rendimiento del modelo cargado en el codigo para confirmar si esta bien optimizado para ser utilizado con la NPU o la CPU del sistema.     
-camAI_CPU.py: Realiza una clasificacion de imagenes utilizando la CPU. Muestra la latencia del modelo cargado y la exactitud de sus predicciones en tiempo real.  
-camAI_NPU.py: Realiza una clasificacion de imagenes utilizando la NPU. Muestra la latencia del modelo cargado y la exactitud de sus predicciones en tiempo real.  
+## Current program functionality 
+### First of all, load [modelo_convertido.tflite](https://github.com/IsmaTIBU/Embedded_AI/releases/tag/Tflite_model) in the same directory as the programs.
+NPU-CPU.py: Analyzes the performance of the model loaded in the code to confirm if it is well optimized for use with the system's NPU or CPU.     
+camAI_CPU.py: Performs image classification using the CPU. Shows the latency of the loaded model and the accuracy of its predictions in real time.  
+camAI_NPU.py: Performs image classification using the NPU. Shows the latency of the loaded model and the accuracy of its predictions in real time.  
 
-### Ejecucion de ficheros
-Ejecutar archivos python con ```python3 [archivo]```
+### File execution
+Run python files with ```python3 [file]```
 
-## Ejemplo de transmision de ficheros
+## File transfer example
 
-IP de la placa: 194.178.59.125  
-Mi IP: 194.178.59.38
+Board IP: 194.178.59.125  
+My IP: 194.178.59.38
 
-Arquitectura de repositorio en ordenador:
+Repository architecture on computer:
 ```
 Embedded_AI
     |-------NPU-CPU.py
@@ -50,7 +53,7 @@ Embedded_AI
     |-------README.md
 ```
 
-Arquitectura actual del directorio en la placa:
+Current directory architecture on the board:
 ```
 PlacaKepar
     |-------NPU-CPU.py
@@ -59,31 +62,28 @@ PlacaKepar
     |-------modelo_convertido.tflite
 ```
 
-#### Para enviar desde el ordenador (Windows)
-Desde el ordenador ejecutar: 
-```
-cd Embedded_AI
-python -m http.server 8000
-```  
-Desde la placa ejecutar:
+#### To send from computer (Windows)
+From computer run:
 ```
 cd PlacaKepar
-wget http://194.178.59.38:8000/[Archivo]
+wget http://194.178.59.38:8000/[File]
 ```
 
-#### Para enviar desde la placa (Linux - yocto)
-Desde el ordenador ejecutar: 
+#### To send from board (Linux - yocto)
+From computer run:
 ```
 cd Embedded_AI
-Invoke-WebRequest -Uri "http://194.178.59.125:8000/[Archivo]" -OutFile "[Archivo]"
-```  
-Desde la placa ejecutar:
+Invoke-WebRequest -Uri "http://194.178.59.125:8000/[File]" -OutFile "[File]"
+```
+
+From board run:
 ```
 cd PlacaKepar
 python3 -m http.server 8000
 ```
-## Entrenamiento del modelo
-El modelo fue enteramente desarrollado con Tensorflow y Keras. El objetivo principal era desarrollar un modelo eficiente para la tarea que tampoco pesase demasiado, complicando lo minimo su arquitectura pero obteniendo resultados correctos. El modelo actual cuenta con poco mas de 900k parametros entrenados durante su fine-tunning.
+
+## Model training
+The model was entirely developed with Tensorflow and Keras. The main objective was to develop an efficient model for the task that wouldn't weigh too much, complicating its architecture as little as possible but obtaining correct results. The current model has just over 900k parameters trained during its fine-tuning.
 
 <table>
 <tr>
@@ -92,7 +92,7 @@ El modelo fue enteramente desarrollado con Tensorflow y Keras. El objetivo princ
 </tr>
 <tr>
 <td colspan="2" align="center">
-  <em>Cambio de la arquitectura del modelo<br>para suavizar las curvas de entrenamiento y validación</em>
+  <em>Model architecture change<br>to smooth training and validation curves</em>
 </td>
 </tr>
 </table>
@@ -105,7 +105,7 @@ El modelo fue enteramente desarrollado con Tensorflow y Keras. El objetivo princ
 <td><img src="images/simple_training_history3.png" width="600"/></td>
 </tr>
 <tr>
-<td colspan="2" align="center"><em>Resultados del entrenamiento del modelo inicial y del modelo final</em></td>
+<td colspan="2" align="center"><em>Initial model and final model training results</em></td>
 </tr>
 </table>
 
@@ -115,22 +115,22 @@ El modelo fue enteramente desarrollado con Tensorflow y Keras. El objetivo princ
 <td><img src="images/TFLITE_predictions.png" width="400"/></td>
 </tr>
 <tr>
-<td colspan="2" align="center"><em>Resultado de deteccion entre un modelo .keras y .tflite</em></td>
+<td colspan="2" align="center"><em>Detection results between a .keras model and .tflite model</em></td>
 </tr>
 </table>
 
-|          |modelo .keras|modelo .tflite|
+|          |.keras model|.tflite model|
 |----------|-----------|------------|
-|Peso|11.3 MB|1.05 MB|
+|Weight|11.3 MB|1.05 MB|
 |Precision|100 %|98.59 %|
-|Confianza promedio|97.5 %|94.2 %|
-|Confianza maxima|100 %|99.9 %|
-|Confianza minima|77.3 %|50.2 %|
+|Average confidence|97.5 %|94.2 %|
+|Maximum confidence|100 %|99.9 %|
+|Minimum confidence|77.3 %|50.2 %|
 
-Estos resultados podrian mejorar, especialmente para el modelo en formato .tflite, aumentando el dataset considerablemente (actualmente contamos con unicamente 590 imagenes de entrenamiento).
+These results could improve, especially for the .tflite format model, by considerably increasing the dataset (currently we only have 590 training images).
 
-## Resultados con modelo cargado en ordenador 
-### Camara utilizada: [ELP 5MP HD USB Camera](https://www.elpcctv.com/elp-5mp-hd-usb-camera-board-free-driver-usb-camera-module-with-ov5640-sensor-elpusb500w02ml21-p-51.html)
+## Results with model loaded on computer 
+### Camera used: [ELP 5MP HD USB Camera](https://www.elpcctv.com/elp-5mp-hd-usb-camera-board-free-driver-usb-camera-module-with-ov5640-sensor-elpusb500w02ml21-p-51.html)
 <img src="images/camTests.PNG" width="100"/>
 
 <table>
@@ -139,12 +139,12 @@ Estos resultados podrian mejorar, especialmente para el modelo en formato .tflit
 <td><img src="images/Comp_testTflite.gif" width="400"/></td>
 </tr>
 <tr>
-<td colspan="2" align="center"><em>Resultado de deteccion en tiempo real de un modelo .keras y .tflite </em></td>
+<td colspan="2" align="center"><em>Real-time detection results of a .keras model and .tflite model </em></td>
 </tr>
 </table>
 
-## Resultados con modelo integrado sobre la placa
-### Camara utilizada: [4K MIPI CMOS Camera](https://www.nxp.com/design/design-center/development-boards-and-designs/4K-MIPI-CMOS-CAMERA-MODULE) 
+## Results with model integrated on the board
+### Camera used: [4K MIPI CMOS Camera](https://www.nxp.com/design/design-center/development-boards-and-designs/4K-MIPI-CMOS-CAMERA-MODULE) 
 <img src="images/camPlaca.PNG" width="150"/>
 
 <table>
@@ -162,26 +162,18 @@ Estos resultados podrian mejorar, especialmente para el modelo en formato .tflit
 </tr>
 <tr>
 <td colspan="2" align="center">
-  <em>Deteccion del fondo, LEDs circulares y cuadrados en la placa de NXP utilizando la CPU o la NPU</em>
+  <em>Detection of background, circular and square LEDs on the NXP board using CPU or NPU</em>
 </td>
 </tr>
 </table>
 
-Como bien he dicho por el momento esto no es mas que un prototipo para familiarizarse lo antes posible con estos conceptos y a utilizar la placa, pero se ve claramente una diferencia de rendimiento
-entre las detecciones por CPU y por NPU, siendo esta ultima mucho mas lenta (~ x2.07) cuando no deberia ser asi. Habra entonces que depurar errores de optimizacion, incluso si por suerte para nuestro caso el modelo actual es tan ligero que se ejecuta suficientemente rapido por CPU.
-Ademas de eso los LEDs cuadrados no llegan a ser detectados en ningun momento, aun siendo el mismo modelo que como bien hemos visto antes tenia una precision muy alta. Esto muy probablemente por un dataset no bien "especializado" para esa camara. Lo mejor seria utilizar la propia camara que se utilizaria para la deteccion para tomar las fotos utilizadas para construir el dataset. El emplazamiento tambien es crucial puesto que se vera reflejado en los cambios de luz y los reflejos captados por camara.  
+As I have mentioned, for now this is nothing more than a prototype to become familiar with these concepts and to use the board as soon as possible, but there is clearly a performance difference between CPU and NPU detections, with the latter being much slower (~ x2.07) when it shouldn't be. There will then be optimization errors to debug, even if fortunately for our case the current model is so light that it runs fast enough on CPU.
+In addition to that, square LEDs are never detected, even though it's the same model that, as we have seen before, had very high precision. This is most likely due to a dataset that is not well "specialized" for that camera. The best thing would be to use the same camera that would be used for detection to take the photos used to build the dataset. The location is also crucial since it will be reflected in lighting changes and reflections captured by the camera.
 
-### Dos posibles soluciones:
-1. Crear un dataset mucho mas extenso (~2000-3000 imagenes de entrenamiento) en el que se implementen fotos con mucha diferencia de intensidad luminica.  
-   **- Pros:** Muy probablemente se trataria de un dataset que funcionaria con casi cualquier tipo de camara bajo casi cualquier tipo de condiciones.  
-   **- Contras:** Construir un dataset de esa envergadura tomaria bastante tiempo (1 semana aprox, sin contar posibles errores de etiquetado por ir con prisa).
-3. Crear un dataset especializado (~500-600 imagenes de entrenamiento) para ser utilizado unicamente con esa camara. Las fotos deberian ser tomadas con esa camara bajo las condiciones y
-   emplazamiento en el que se la dispondria.  
-   **- Pros:** Construir ese dataset tomaria mucho menos tiempo (1 dia aproximadamente). Ademas al tratarse de un dataset "especializado" la exactitud de las predicciones seria muy alta siempre.  
-   **- Contras:** Dataset "especializado" por lo cual no se podria utilizar para el resto de emplazamientos o camaras. O bien se verian bajadas de rendimiento o bien habria que implementar mas imagenes al dataset si se desea utilizar para otros casos.
-   
-
-
-
-
-
+### Two possible solutions:
+1. Create a much more extensive dataset (~2000-3000 training images) in which photos with very different light intensity are implemented.  
+   **- Pros:** It would most likely be a dataset that would work with almost any type of camera under almost any type of conditions.  
+   **- Cons:** Building a dataset of that magnitude would take quite a bit of time (approximately 1 week, not counting possible labeling errors from rushing).
+2. Create a specialized dataset (~500-600 training images) to be used only with that camera. The photos should be taken with that camera under the conditions and location where it would be placed.  
+   **- Pros:** Building that dataset would take much less time (approximately 1 day). Also, being a "specialized" dataset, the accuracy of predictions would always be very high.  
+   **- Cons:** "Specialized" dataset so it could not be used for other locations or cameras. Either performance drops would be seen or more images would have to be implemented to the dataset if it is desired to be used for other cases.

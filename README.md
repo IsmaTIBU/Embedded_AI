@@ -1,11 +1,11 @@
+> A tener en cuenta: Este proyecto es un prototipo desarrollado para una aplicación industrial que involucra el control de calidad de un producto en especifico pero se focalizó desde una primera instancia en la misma detección de LEDs que en [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) para una visión mas clara de sus capacidades y limitaciones al tratarse de un modelo de IA integrado en una placa. Sin embargo el modelo obtenido basandonos en la deteccion de LEDs es perfectamente extrapolable a un control de calidad relacionado a cualquier otro elemento de la placa.
+
 # Indice
 ### - [EL Hardware](#qué-es-la-imx-8m-plus-power)
+### - [El Software](#funcionamiento-de-los-programas-actuales)
 ### - [Entrenamiento](#entrenamiento-del-modelo)
 ### - [Resultados](#resultados-con-modelo-cargado-en-ordenador)
 ### - [Mejorias](#dos-posibles-soluciones)
-
-# Placa i.MX 8M Plus Power
-> A tener en cuenta: Este proyecto es un prototipo desarrollado para una aplicación industrial específica que involucra el control de calidad de un producto en especifico pero se focalizo desde una primera instancia en la misma deteccion de LEDs que en [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) para una vision mas clara de sus capacidades y limitacines al tratarse de un modelo de IA integrado en una placa. Sin embargo los resultados obtenidos basandonos en la deteccion de LEDs es perfectamente extrapolable a un control de calidad relacionado a cualquier otro elemento de la placa.
 
 ### ¿Qué es la i.MX 8M Plus Power?
 Es una placa de desarrollo profesional de NXP basada en el procesador i.MX 8M Plus, diseñada específicamente para aplicaciones de IA y machine learning en edge computing.  
@@ -21,7 +21,7 @@ NPU: Neural Processing Unit de 2.3 TOPS para IA
 VPU: Video Processing Unit para codificación/decodificación H.264/H.265  
 
 ### Capacidades clave:
-IA/ML: NPU dedicado que acelera modelos en formato .tflite(TensorFlow Lite)  
+IA/ML: NPU dedicado que acelera modelos en formato .tflite (TensorFlow Lite)  
 Visión: Múltiples cámaras, procesamiento de imagen en tiempo real  
 Audio: DSP dedicado para procesamiento de audio avanzado  
 Conectividad: Ethernet, WiFi, Bluetooth, múltiples USB  
@@ -131,6 +131,7 @@ Estos resultados podrian mejorar, especialmente para el modelo en formato .tflit
 
 ## Resultados con modelo cargado en ordenador 
 ### Camara utilizada: [ELP 5MP HD USB Camera](https://www.elpcctv.com/elp-5mp-hd-usb-camera-board-free-driver-usb-camera-module-with-ov5640-sensor-elpusb500w02ml21-p-51.html)
+<img src="images/camTests.PNG" width="100"/>
 
 <table>
 <tr>
@@ -143,7 +144,8 @@ Estos resultados podrian mejorar, especialmente para el modelo en formato .tflit
 </table>
 
 ## Resultados con modelo integrado sobre la placa
-### Camara utilizada: [4K MIPI CMOS Camera](https://www.nxp.com/design/design-center/development-boards-and-designs/4K-MIPI-CMOS-CAMERA-MODULE)
+### Camara utilizada: [4K MIPI CMOS Camera](https://www.nxp.com/design/design-center/development-boards-and-designs/4K-MIPI-CMOS-CAMERA-MODULE) 
+<img src="images/camPlaca.PNG" width="150"/>
 
 <table>
 <tr>
@@ -171,14 +173,14 @@ Ademas de eso los LEDs cuadrados no llegan a ser detectados en ningun momento, a
 
 ### Dos posibles soluciones:
 1. Crear un dataset mucho mas extenso (~2000-3000 imagenes de entrenamiento) en el que se implementen fotos con mucha diferencia de intensidad luminica.  
-   **Pros:** Muy probablemente se trataria de un dataset que funcionaria con casi cualquier tipo de camara bajo casi cualquier tipo de condiciones.  
-   **Contras:** Construiri un dataset de esa envergadura tomaria bastante tiempo (1 semana aprox, sin contar posibles errores de etiquetado por ir con prisa).
+   **- Pros:** Muy probablemente se trataria de un dataset que funcionaria con casi cualquier tipo de camara bajo casi cualquier tipo de condiciones.  
+   **- Contras:** Construir un dataset de esa envergadura tomaria bastante tiempo (1 semana aprox, sin contar posibles errores de etiquetado por ir con prisa).
 3. Crear un dataset especializado (~500-600 imagenes de entrenamiento) para ser utilizado unicamente con esa camara. Las fotos deberian ser tomadas con esa camara bajo las condiciones y
    emplazamiento en el que se la dispondria.  
-   **Pros:** Construir ese dataset tomaria mucho menos tiempo (1 dia aproximadamente).  
-   **Contras:** Dataset especializado por lo cual no se podria utilizar para el resto de emplazamientos o camaras. O bien se verian bajadas de rendimiento o bien habria qeu implementar mas imagenes
-   si se desea utilizar para otros casos.
+   **- Pros:** Construir ese dataset tomaria mucho menos tiempo (1 dia aproximadamente). Ademas al tratarse de un dataset "especializado" la exactitud de las predicciones seria muy alta siempre.  
+   **- Contras:** Dataset "especializado" por lo cual no se podria utilizar para el resto de emplazamientos o camaras. O bien se verian bajadas de rendimiento o bien habria que implementar mas imagenes al dataset si se desea utilizar para otros casos.
    
+
 
 
 

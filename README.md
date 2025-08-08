@@ -1,4 +1,4 @@
-[Click aqui para ver el documento en Español](es_README.md)
+[Click aqui para ver el documento en Español](es_README.md)  
 [Clickez ici pour lire le document traduit au français](fr_README.md)
 
 > Note: This project is a prototype developed for an industrial application involving quality control of a specific product, but it was initially focused on the same LED detection as in [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) for a clearer view of its capabilities and limitations when dealing with an AI model integrated into a board. However, the model obtained based on LED detection is perfectly extrapolable to quality control related to any other board element.
@@ -6,9 +6,9 @@
 # Index
 ### - [The Hardware](#what-is-the-imx-8m-plus-power)
 ### - [The Software](#current-program-functionality)
-### - [Training](#model-training)
-### - [Results](#results-with-model-loaded-on-computer)
-### - [Improvements](#two-possible-solutions)
+### - [Model Training](#model-training)
+### - [Model Results](#results-with-model-loaded-on-computer)
+### - [Possible Improvements](#two-possible-solutions)
 
 ### What is the i.MX 8M Plus Power?
 It is a professional development board from NXP based on the i.MX 8M Plus processor, specifically designed for AI and machine learning applications in edge computing.
@@ -64,6 +64,12 @@ PlacaKepar
 
 #### To send from computer (Windows)
 From computer run:
+```
+cd Embedded_AI
+python -m http.server 8000
+```
+
+From board run:
 ```
 cd PlacaKepar
 wget http://194.178.59.38:8000/[File]

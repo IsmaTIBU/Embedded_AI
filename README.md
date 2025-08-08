@@ -1,5 +1,5 @@
 # Indice
-### - [La placa](#qué-es-la-imx-8m-plus-power)
+### - [EL Hardware](#qué-es-la-imx-8m-plus-power)
 ### - [Entrenamiento](#entrenamiento-del-modelo)
 ### - [Resultados](#resultados-con-modelo-cargado-en-ordenador)
 ### - [Mejorias](#dos-posibles-soluciones)
@@ -179,6 +179,7 @@ Ademas de eso los LEDs cuadrados no llegan a ser detectados en ningun momento, a
    **Contras:** Dataset especializado por lo cual no se podria utilizar para el resto de emplazamientos o camaras. O bien se verian bajadas de rendimiento o bien habria qeu implementar mas imagenes
    si se desea utilizar para otros casos.
    
+
 
 
 

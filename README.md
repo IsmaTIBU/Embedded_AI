@@ -184,3 +184,4 @@ In addition to that, square LEDs are never detected, even though it's the same m
    **- Pros:** Building that dataset would take much less time (approximately 1 day). Also, being a "specialized" dataset, the accuracy of predictions would always be very high.  
    **- Cons:** "Specialized" dataset so it could not be used for other locations or cameras. Either performance drops would be seen or more images would have to be implemented to the dataset if it is desired to be used for other cases.
 
+

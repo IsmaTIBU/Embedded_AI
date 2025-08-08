@@ -1,13 +1,13 @@
 > A tener en cuenta: Este proyecto es un prototipo desarrollado para una aplicación industrial que involucra el control de calidad de un producto en especifico pero se focalizó desde una primera instancia en la misma detección de LEDs que en [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) para una visión mas clara de sus capacidades y limitaciones al tratarse de un modelo de IA integrado en una placa. Sin embargo el modelo obtenido basandonos en la deteccion de LEDs es perfectamente extrapolable a un control de calidad relacionado a cualquier otro elemento de la placa.
 
 # Indice
-### - [EL Hardware](#qué-es-la-imx-8m-plus-power)
+### - [EL Hardware](#qué-es-la-8mplus-bb)
 ### - [El Software](#funcionamiento-de-los-programas-actuales)
 ### - [Entrenamiento del modelo](#entrenamiento-del-modelo)
 ### - [Resultados del modelo](#resultados-con-modelo-cargado-en-ordenador)
 ### - [Possibles Mejoras](#dos-posibles-soluciones)
 
-### ¿Qué es la i.MX 8M Plus Power?
+### ¿Qué es la 8MPLUS-BB?
 Es una placa de desarrollo profesional de NXP basada en el procesador i.MX 8M Plus, diseñada específicamente para aplicaciones de IA y machine learning en edge computing.  
 
 [Link to datasheet](https://www.nxp.com/products/IMX8MPLUS)

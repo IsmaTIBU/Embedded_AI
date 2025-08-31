@@ -1,4 +1,4 @@
-# Embedded_AI - Intégration d'un model d'IA sur une plaque electronique ayant commen but de controler la qualité de produits
+# Embedded_AI - Intégration d'un model d'IA sur une plaque electronique ayant comme but de controler la qualité de produits
 
 > À noter : Ce projet est un prototype développé pour une application industrielle impliquant le contrôle qualité d'un produit spécifique, mais il s'est initialement focalisé sur la même détection de LED que dans [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) pour une vision plus claire de ses capacités et limitations lors du traitement d'un modèle d'IA intégré dans une carte. Cependant, le modèle obtenu basé sur la détection de LED est parfaitement extrapolable au contrôle qualité lié à tout autre élément de la carte.
 

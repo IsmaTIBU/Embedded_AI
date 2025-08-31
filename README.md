@@ -1,5 +1,15 @@
-[Click aqui para ver el documento en Español](es_README.md)  
-[Clickez ici pour lire le document traduit au français](fr_README.md)
+<div align="left">
+  <a href="fr_README.md">
+    <img src="https://img.shields.io/badge/lang-fr-blue">
+  </a>
+</div>
+
+<div align="left">
+  <a href="es_README_en.md">
+    <img src="https://img.shields.io/badge/lang-es-red">
+  </a>
+</div>
+
 
 # Embedded_AI - AI model integration on an electronic board for quality control
 
@@ -185,6 +195,7 @@ In addition to that, square LEDs are never detected, even though it's the same m
 2. Create a specialized dataset (~500-600 training images) to be used only with that camera. The photos should be taken with that camera under the conditions and location where it would be placed.  
    **- Pros:** Building that dataset would take much less time (approximately 1 day). Also, being a "specialized" dataset, the accuracy of predictions would always be very high.  
    **- Cons:** "Specialized" dataset so it could not be used for other locations or cameras. Either performance drops would be seen or more images would have to be implemented to the dataset if it is desired to be used for other cases.
+
 
 
 

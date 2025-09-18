@@ -13,7 +13,8 @@
 
 # Embedded_AI - AI model integration on an electronic board for quality control
 
-> Note: This project is a prototype developed for an industrial application involving quality control of a specific product, but it was initially focused on the same LED detection as in [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) for a clearer view of its capabilities and limitations when dealing with an AI model integrated into a board. However, the model obtained based on LED detection is perfectly extrapolable to quality control related to any other board element.
+> [!Note]  
+> This project is a prototype developed for an industrial application involving quality control of a specific product, but it was initially focused on the same LED detection as in [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) for a clearer view of its capabilities and limitations when dealing with an AI model integrated into a board. However, the model obtained based on LED detection is perfectly extrapolable to quality control related to any other board element.
 
 # Index
 ### - [The Hardware](#what-is-the-8mplus-bb)
@@ -195,6 +196,7 @@ In addition to that, square LEDs are never detected, even though it's the same m
 2. Create a specialized dataset (~500-600 training images) to be used only with that camera. The photos should be taken with that camera under the conditions and location where it would be placed.  
    **- Pros:** Building that dataset would take much less time (approximately 1 day). Also, being a "specialized" dataset, the accuracy of predictions would always be very high.  
    **- Cons:** "Specialized" dataset so it could not be used for other locations or cameras. Either performance drops would be seen or more images would have to be implemented to the dataset if it is desired to be used for other cases.
+
 
 
 

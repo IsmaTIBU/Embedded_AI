@@ -1,6 +1,7 @@
 # Embedded_AI - Integracion de un modelo de IA en una placa electronica para realizar controles de calidad
 
-> A tener en cuenta: Este proyecto es un prototipo desarrollado para una aplicación industrial que involucra el control de calidad de un producto en especifico pero se focalizó desde una primera instancia en la misma detección de LEDs que en [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) para una visión mas clara de sus capacidades y limitaciones al tratarse de un modelo de IA integrado en una placa. Sin embargo el modelo obtenido basandonos en la deteccion de LEDs es perfectamente extrapolable a un control de calidad relacionado a cualquier otro elemento de la placa.
+> [!Note]
+> Este proyecto es un prototipo desarrollado para una aplicación industrial que involucra el control de calidad de un producto en especifico pero se focalizó desde una primera instancia en la misma detección de LEDs que en [LedType-detection](https://github.com/IsmaTIBU/LedType-detection/tree/main) para una visión mas clara de sus capacidades y limitaciones al tratarse de un modelo de IA integrado en una placa. Sin embargo el modelo obtenido basandonos en la deteccion de LEDs es perfectamente extrapolable a un control de calidad relacionado a cualquier otro elemento de la placa.
 
 # Indice
 ### - [EL Hardware](#qué-es-la-8mplus-bb)

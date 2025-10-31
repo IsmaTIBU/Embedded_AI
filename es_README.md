@@ -13,7 +13,7 @@
 ### ¿Qué es la 8MPLUS-BB?
 Es una placa de desarrollo profesional de NXP basada en el procesador i.MX 8M Plus, diseñada específicamente para aplicaciones de IA y machine learning en edge computing.  
 
-[Link to datasheet](https://www.nxp.com/products/IMX8MPLUS)
+[Link to datasheet](https://www.nxp.com/products/i.MX8MPLUS)
 
 ![Placa](images/Placa.webp)
 

@@ -26,7 +26,7 @@
 ### What is the 8MPLUS-BB?
 It is a professional development board from NXP based on the i.MX 8M Plus processor, specifically designed for AI and machine learning applications in edge computing.
 
-[Link to datasheet](https://www.nxp.com/products/IMX8MPLUS)
+[Link to datasheet](https://www.nxp.com/products/i.MX8MPLUS)
 
 ![Placa](images/Placa.webp)
 
@@ -196,6 +196,7 @@ In addition to that, square LEDs are never detected, even though it's the same m
 2. Create a specialized dataset (~500-600 training images) to be used only with that camera. The photos should be taken with that camera under the conditions and location where it would be placed.  
    **- Pros:** Building that dataset would take much less time (approximately 1 day). Also, being a "specialized" dataset, the accuracy of predictions would always be very high.  
    **- Cons:** "Specialized" dataset so it could not be used for other locations or cameras. Either performance drops would be seen or more images would have to be implemented to the dataset if it is desired to be used for other cases.
+
 
 
 

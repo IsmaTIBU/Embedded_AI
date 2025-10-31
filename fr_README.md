@@ -13,7 +13,7 @@
 ### Qu'est-ce que la 8MPLUS-BB ?
 C'est une carte de développement professionnelle de NXP basée sur le processeur i.MX 8M Plus, conçue spécifiquement pour les applications d'IA et d'apprentissage automatique en edge computing.
 
-[Link to datasheet](https://www.nxp.com/products/IMX8MPLUS)
+[Link to datasheet](https://www.nxp.com/products/i.MX8MPLUS)
 
 ![Placa](images/Placa.webp)
 
